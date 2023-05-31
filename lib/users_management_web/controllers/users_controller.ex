@@ -6,6 +6,14 @@ defmodule UsersManagementWeb.UsersController do
 
   action_fallback FallbackController
 
+  def index(conn, _params) do
+    with {:ok, users} <- UsersManagement.get_all_users() do
+      conn
+      |> put_status(:ok)
+      |> render("users.json", users: users)
+    end
+  end
+
   def create(conn, params) do
     with {:ok, %User{} = user} <- UsersManagement.create_user(params) do
       conn

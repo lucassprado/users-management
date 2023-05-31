@@ -9,6 +9,13 @@ defmodule UsersManagement.Users.Get do
     end
   end
 
+  def all() do
+    case Repo.all(User) do
+      nil -> {:error, Error.build_user_not_found_error()}
+      users -> {:ok, users}
+    end
+  end
+
   defp get(id) do
     case Repo.get(User, id) do
       nil -> {:error, Error.build_user_not_found_error()}

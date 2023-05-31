@@ -11,4 +11,6 @@ defmodule UsersManagementWeb.UsersView do
   end
 
   def render("user.json", %{user: %User{} = user}), do: %{user: user}
+
+  def render("users.json", %{users: users}), do: %{users: users}
 end
